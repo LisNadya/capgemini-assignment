@@ -3,7 +3,7 @@ import { EmailOtpComponent } from './email-otp/email-otp.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: EmailOtpComponent,
   },
 ];
