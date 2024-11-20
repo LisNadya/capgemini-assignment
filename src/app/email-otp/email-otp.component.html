@@ -1,0 +1,80 @@
+<main class="center">
+  <mat-card style="min-width: 300px; width: 400px" appearance="outlined">
+    <ng-container *ngIf="!hasSentEmail; else otpForm">
+      <mat-card-header>
+        <mat-card-title> Enter your email address</mat-card-title>
+        <mat-card-subtitle
+          >We will send you a confirmation code</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <mat-form-field class="input full-width">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              [formControl]="email"
+              placeholder="Ex. pat@example.com"
+            />
+            @if (email.hasError('required')) {
+            <mat-error>Email is required</mat-error>
+            } @else if (email.hasError('email')) {
+            <mat-error>Email is invalid</mat-error>
+            } @else if (email.hasError('postSubmitError')) {
+            <mat-error>{{ email.getError("postSubmitError") }}</mat-error>
+            }
+          </mat-form-field>
+        </form>
+
+        <button
+          class="full-width"
+          mat-flat-button
+          type="button"
+          (click)="generateOTPEmail()"
+        >
+          Verify
+        </button>
+      </mat-card-content>
+    </ng-container>
+  </mat-card>
+
+  <ng-template #otpForm>
+    <mat-card-header>
+      <mat-card-title> OTP verification</mat-card-title>
+      <mat-card-subtitle>
+        Enter the code that has been sent to
+        {{ email.value }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field class="input full-width">
+          <mat-label>OTP</mat-label>
+          <input
+            matInput
+            type="number"
+            [formControl]="otp"
+            placeholder="123456"
+          />
+          @if (otp.hasError('required')) {
+          <mat-error>OTP is required</mat-error>
+          } @else if (otp.hasError('pattern')) {
+          <mat-error>OTP has to be 6 digits</mat-error>
+          } @else if (otp.hasError('postSubmitError')) {
+          <mat-error>{{ otp.getError("postSubmitError") }}</mat-error>
+          }
+        </mat-form-field>
+      </form>
+
+      <button
+        class="full-width"
+        mat-flat-button
+        type="button"
+        (click)="verifyOTP()"
+      >
+        Submit
+      </button>
+    </mat-card-content>
+  </ng-template>
+</main>
