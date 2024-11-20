@@ -1,0 +1,29 @@
+# Node modules directory
+node_modules/
+
+# npm log files
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output
+/dist
+/out-tsc
+
+# Compiled output
+*.tsbuildinfo
+
+# IDE files
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*.local
+
+# Angular CLI generated files
+.angular/
